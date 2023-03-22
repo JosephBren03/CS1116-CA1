@@ -1,0 +1,246 @@
+/********** CORE **********/
+
+:root {
+    --black: #1b1b1b;
+    --main-bg-color: #292929;
+    --secondary-bg-color: #303030;
+    --secondary-color: #ef930a;
+    --text-color: #fefae0;
+
+    --off-white-dark: #dedac0;
+    --general-padding: 1em;
+    font-size: 16px;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+    text-align: center;
+}
+
+body {
+    margin: 0;
+}
+
+/****** GRID LAYOUT ******/
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "top"
+        "middle"
+        "bottom"
+}
+
+header {
+    grid-area: top;
+}
+
+main {
+    grid-area: middle;
+}
+
+footer {
+    grid-area: bottom;
+}
+
+/****** GENERAL ******/
+main figure {
+    width: 40%;
+}
+
+section {
+    text-align: center;
+}
+
+table, th, td {
+    border: 2px solid var(--black);
+    border-collapse: collapse;
+}
+
+table {
+    margin: 1em auto;
+}
+
+th, td {
+    text-align: center;
+    padding: 0.25rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h2 {
+    text-decoration: underline 2px;
+}
+
+ol, ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+section, article {
+    margin-bottom: 2rem;
+}
+
+figure {
+    margin: 0;
+    position: relative;
+}
+
+img {
+    max-width: 100%;
+}
+
+#submit, #submitSearch, #submitGenre, #image {
+    background-color: var(--black);
+    color: var(--text-color)
+}
+
+/****** HEADER ******/
+
+header {
+    background-color: var(--black);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    margin-left: 1rem;
+}
+
+/****** NAV ******/
+
+nav {
+    background-color: var(--black);
+    padding: var(--general-padding);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+nav ul {
+    margin-right: 1.5rem;
+}
+
+nav p {
+    display: inline;
+    margin: 0.5rem;
+    padding: var(--general-padding);
+    border-radius: 0.2em;
+}
+
+nav a, nav a:visited {
+    display: inline;
+    color: var(--secondary-color);
+}
+
+#current_page {
+    color: var(--secondary-color);
+}
+
+/****** MAIN ******/
+main figure {
+    display: inline-block;
+}
+
+
+/****** INDEX / DISCOVER ******/
+
+#index_scan {
+    background-color: var(--secondary-bg-color);
+    margin-bottom: 1rem;
+    padding: var(--general-padding);
+}
+
+#genreFilter {
+    width: 25% auto;
+    list-style-position: outside;
+    padding-left: 1rem;
+}
+
+#games > section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#games h2 {
+    text-align: center;
+}
+
+#games > section > section {
+    text-align: center;
+    width: 50%;
+}
+
+#games h3 {
+    margin: 0.5rem;
+}
+
+#games ul {
+    padding: 0.5rem;
+    margin: 0.5rem;
+}
+
+#games b {
+    color: var(--secondary-color);
+}
+
+/****** GAME ******/
+
+.review {
+    border: 2px solid var(--secondary-color);
+    padding-top: 1rem;
+    margin: 1rem;
+}
+
+#reviews {
+    background-color: var(--black);
+    padding: var(--general-padding);
+    margin-bottom: 0;
+}
+
+
+/****** PROFILE ******/
+#avg_reviewed {
+    font-size: 200%;
+    color: var(--secondary-color);
+}
+
+
+
+/****** LOGIN/REGISTER ******/
+.enter_details {
+    text-align: center;
+    padding: 4rem;
+}
+
+.enter_details input {
+    margin: 0.25rem;
+}
+
+
+/****** FOOTER ******/
+footer {
+    background-color: var(--black);
+    color: var(--text-color);
+    padding: 3rem;
+}
+
+
+/*********** MEDIA QUERIES **********/
+@viewport {
+    width: device-width;
+}

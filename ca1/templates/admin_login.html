@@ -1,0 +1,27 @@
+{% extends "base.html" %} 
+
+{% block main_content %} 
+
+    <h2>Admin Login</h2>
+
+    <section class="enter_details">
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            {{ form.admin_id.label }}
+            {{ form.admin_id() }}
+            {% for error in form.admin_id.errors %}
+                {{ error }}
+            {% endfor %}
+            <br />
+            {{ form.password.label }}
+            {{ form.password() }}
+            {% for error in form.password.errors %}
+                {{ error }}
+            {% endfor %}
+            <br />
+            {{ form.submit() }}
+            <br />
+        </form>
+    </section>
+
+{% endblock %}

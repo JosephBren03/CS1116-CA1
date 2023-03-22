@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+    <!-- Game Title -->
+    <h2>{{ game["name"] }}</h2>
+
+    <figure>
+        <img src="{{ url_for('static', filename=game['image']) }}" alt="{{ game['name'] }} cover art" />
+    </figure>
+
+    <!-- Game Info Section -->
+    <section>
+        <!-- Summary -->
+        <section>
+            <h3>Summary</h3>
+            <p>{{ game["description"] }}</p>
+        </section>
+        <!-- Game Data -->
+        <section>
+            <h3>Misc</h3>
+            <ul>
+                <li><b>Genre:</b> {{ game["genre"] }}</li>
+                <li><b>Release:</b> {{ game["release_date"] }}</li>
+                <li><b>Developer:</b> {{ game["developer"] }}</li>
+                <li><b>Publisher:</b> {{ game["publisher"] }}</li>
+                <li><b>User Score:</b> {{ game["avg_score"] }}</li>
+            </ul>
+        </section>
+    </section>
+
+    <!-- Review Section -->
+    <section id="reviews">
+        <h3>Reviews</h3>
+        <!-- Redirect to Write a Review -->
+            <p><a href="{{ url_for('write_review', game_id=game['game_id']) }}">Write a Review!</a></p>
+        <!-- Other Reviews -->
+        {% for review in reviews %}
+            <section class="review">
+                <section>
+                    <h4>{{ review["user_id"] }}: {{ review["score"] }}</h4>
+                    <ul>
+                        <li>Date: {{ review["date"] }}</li>
+                        <!-- Displays appropriate helpfulness score -->
+                        {% if review["helpfulness"] < 0 %}
+                            <li>Not helpful</li>
+                        {% else %}
+                            <li>Helpful</li>
+                        {% endif %}
+                    </ul>
+                    <p>{{ review["description"] }}</p>
+                </section>
+                <!-- Rating helpfulness -->
+                <section class="rating">
+                    <h4>Rate this review!</h4>
+                    <!-- Add to cart-style link for helpful/not helpful-->
+                    <ul>
+                        <li><a href="{{ url_for('helpfulness', game_id=game['game_id'], review_id=review['review_id'], helpfulness=1) }}">Helpful</a></li>
+                        <li><a href="{{ url_for('helpfulness', game_id=game['game_id'], review_id=review['review_id'], helpfulness=0) }}">Not helpful</a></li>
+                    </ul>
+                </section>
+            </section>
+        {% endfor %}
+    </section>
+
+{% endblock %}

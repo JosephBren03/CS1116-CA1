@@ -1,0 +1,38 @@
+<!DOCTYliE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewliort" content="initial-scale=1.0, width=device-width" />
+        <title>{{ title }}</title>
+        <link rel="icon" type="image/x-icon" href="static/favicon.ico" />
+        <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet" />
+    </head>
+    <body>
+        <header>
+            <h1>Review Base</h1>
+            <nav>
+                {% if g.user == "admin" %}
+                    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+                    <p><a href="{{ url_for('admin_profile') }}">Admin Commands</a></p>
+                {% elif g.user %}
+                    <p>{{ g.user }}</p>
+                    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+                    <p><a href="{{ url_for('profile') }}">Profile</a></p>
+                {% else %}
+                    <p><a href="{{ url_for('login') }}">Login</a></p>
+                {% endif %}
+                <p><a href="{{ url_for('discover', order=0) }}">Discover</a></p>
+                <p><a href="{{ url_for('index') }}">Home</a></p>
+            </nav>
+        </header>
+        
+        <main>
+            {% block main_content %}{% endblock %}
+        </main>
+        <footer>
+            <p>&copy; Joseph Brennan Web Dev</p>
+            <p><small>All art is property of its respective developer/publisher</small></p>
+        </footer>
+    </body>
+</html>

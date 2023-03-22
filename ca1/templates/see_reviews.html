@@ -1,0 +1,30 @@
+{% extends "base.html" %} 
+
+{% block main_content %} 
+
+    <h2>All Reviews</h2>
+
+    <table>
+        <tr>
+            <th scope="col">Game</th>
+            <th scope="col">Review ID</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Description</th>
+            <th scope="col">Score</th>
+            <th scope="col">Helpfulness Score</th>
+        </tr>
+        {% for review in reviews %}
+            <tr>
+                <th scope="row">{{ review["name"] }}</th>
+                <td>{{ review["review_id"] }}</td>
+                <td>{{ review["user_id"] }}</td>
+                <td>{{ review["date"] }}</td>
+                <td>{{ review["description"] }}</td>
+                <td>{{ review["score"] }}</td>
+                <td>{{ review["helpfulness"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

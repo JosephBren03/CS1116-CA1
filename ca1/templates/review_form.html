@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+    <section id="write_review">
+      <h2>Write a Review</h2>
+
+      <form action="" method="post" novalidate>
+      {{ form.hidden_tag() }}
+      {{ form.user_score() }}
+      <br />
+      {{ form.review_text.label }}
+      {{ form.review_text() }}
+      <br />
+      {% for error in form.review_text.errors %}
+        {{ error }}
+      {% endfor %}
+      <br />
+      {{ form.submit() }}
+    </form>
+  </section>
+
+{% endblock %}

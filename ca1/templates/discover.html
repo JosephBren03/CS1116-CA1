@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+    <section id="index_scan">
+        <h2>Search & Filter</h2>
+        <p><small>Please type with capitalisation</small></p>
+        <form action="" method="post" id="search" novalidate>
+            {{ search_form.hidden_tag() }}
+            {{ search_form.search() }}
+            {% for error in search_form.search.errors %}
+                {{ error }}
+            {% endfor %}
+
+            {{ search_form.submitSearch() }}
+        </form>
+
+        <form action="" method="post" id="filter" novalidate>
+            {{ genre_form.hidden_tag() }}
+            {{ genre_form.genreFilter() }}
+            <br />
+            {{ genre_form.submitGenre() }}
+        </form>
+        <h2>Sort By</h2>
+        <ul>
+            <li><a href="{{ url_for('discover', order=0) }}">Latest</a></li>
+            <li><a href="{{ url_for('discover', order=1) }}">A-Z</a></li>
+            <li><a href="{{ url_for('discover', order=2) }}">Score (High-Low)</a></li>
+        </ul>
+    </section>
+
+    <section id="games">
+        {% if order == 0 %}
+            <h2>Latest Games</h2>
+        {% elif order == 1 %}
+            <h2>Games A-Z</h2>
+        {% elif order == 2 %}
+            <h2>Score High-Low</h2>
+        {% else %}
+            <h2>Games</h2>
+        {% endif %}
+        
+        <section>
+            <!-- If the search displays nothing -->
+            {% if games == [] %}
+                <p>Game not found</p>
+            {% else %}
+                {% for game in games %}
+                    <section>
+                        <figure>
+                            <img src="{{ url_for('static', filename=game['image']) }}" alt="{{ game['name'] }} cover art" />
+                        </figure>
+                        <h3><a href="{{ url_for('game', game_id=game['game_id']) }}">{{ game["name"] }}</a></h3>
+                        <ul>
+                            <li>Genre: {{ game["genre"] }}</li>
+                            <li>Release date: {{ game["release_date"] }}</li>
+                            <!-- If there are no reviews -->
+                            {% if game["avg_score"] == None %}
+                                <li>Score: <b>Unreviewed</b></li>
+                            {% else %}
+                                <li>Score: <b>{{ game["avg_score"] }}</b></li>
+                            {% endif %}
+                        </ul>
+                    </section>
+                {% endfor %}
+            {% endif %}
+        </section>
+    </section>
+
+
+{% endblock %}

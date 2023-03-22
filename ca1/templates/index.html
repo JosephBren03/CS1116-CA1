@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <section id="games">
+        <h2>Featured Games</h2>
+
+        <section>
+            <!-- If the search displays nothing -->
+            {% if games == [] %}
+                <p>Game not found</p>
+            {% else %}
+                {% for game in games %}
+                    <section>
+                        <figure>
+                            <img src="{{ url_for('static', filename=game['image']) }}" alt="{{ game['name'] }} cover art" />
+                        </figure>
+                        <h3><a href="{{ url_for('game', game_id=game['game_id']) }}">{{ game["name"] }}</a></h3>
+                        <ul>
+                            <li>Genre: {{ game["genre"] }}</li>
+                            <li>Release date: {{ game["release_date"] }}</li>
+                            <!-- If there are no reviews -->
+                            {% if game["avg_score"] == None %}
+                                <li>Score: <b>Unreviewed</b></li>
+                            {% else %}
+                                <li>Score: <b>{{ game["avg_score"] }}</b></li>
+                            {% endif %}
+                        </ul>
+                    </section>
+                {% endfor %}
+            {% endif %}
+        </section>
+    </section>
+
+
+{% endblock %}

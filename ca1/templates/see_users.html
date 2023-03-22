@@ -1,0 +1,31 @@
+{% extends "base.html" %} 
+
+{% block main_content %} 
+
+    <h2>All Users</h2>
+
+    <table>
+        <tr>
+            <th scope="col">User ID</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>{{ user["user_id"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Inactive Users</h2>
+    
+    <table>
+        <tr>
+            <th scope="col">User ID</th>
+        </tr>
+        {% for user in inactive_users %}
+            <tr>
+                <td>{{ user["user_id"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

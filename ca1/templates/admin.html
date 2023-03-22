@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+    <section>
+        <h2>Database editing</h2>
+        <p><a href="{{ url_for('add_game') }}">Add Game</a></p>
+        <p><a href="{{ url_for('upload_image') }}">Upload Game Image</a></p>
+        <p><a href="{{ url_for('delete_game') }}">Delete Game</a></p>
+        <p><a href="{{ url_for('delete_user') }}">Delete User</a></p>
+        <p><a href="{{ url_for('delete_review') }}">Delete Review</a></p>
+        <p><a href="{{ url_for('new_admin') }}">Add New Admin</a></p>
+    </section>
+    
+    <section>
+        <h2>Monitoring</h2>
+        <p><a href="{{ url_for('see_reviews') }}">See All Reviews</a></p>
+        <p><a href="{{ url_for('see_users') }}">See All Users</a></p>
+    </section>
+    
+    
+{% endblock %}

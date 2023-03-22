@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+    <h2>Add a Game</h2>
+
+    <form action="" method="post" novalidate>
+		{{ form.hidden_tag() }}
+        {{ form.name.label }}
+		{{ form.name() }}
+        {% for error in form.name.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form.genre.label }}
+		{{ form.genre() }}
+        {% for error in form.genre.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form.release_date.label }}
+		{{ form.release_date() }}
+        {% for error in form.release_date.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form.developer.label }}
+		{{ form.developer() }}
+        {% for error in form.developer.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form.publisher.label }}
+		{{ form.publisher() }}
+        {% for error in form.publisher.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form.image.label }}
+		{{ form.image() }}
+        {% for error in form.image.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form.description.label }}
+		{{ form.description() }}
+        {% for error in form.description.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+		{{ form.submit() }}
+	</form>
+
+{% endblock %}

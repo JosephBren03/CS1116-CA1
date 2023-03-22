@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+    <!-- Average score -->
+    <section>
+        <h2>Your Average Review Score!</h2>
+        <p id="avg_reviewed">{{ avg_score[0] }}</p>
+    </section>
+
+    <section id="games">
+        <h2>Your Reviews</h2>
+
+        <section>
+            {% for review in user_reviews %}
+            <section>
+                <figure>
+                    <img src="{{ url_for('static', filename=review['image']) }}" alt="{{ review['name'] }} cover art" />
+                </figure>
+                <h3><a href="{{ url_for('game', game_id=review['game_id']) }}">{{ review["name"] }}</a></h3>
+                <h4>Score: <b>{{ review["score"] }}</b></h4>
+                <ul>
+                    <li>Date: {{ review["date"] }}</li>
+                    {% if review["helpfulness"] < 0 %}
+                        <li class="not-helpful">Not helpful</li>
+                    {% else %}
+                        <li class="helpful">Helpful</li>
+                    {% endif %}
+                </ul>
+                <p>{{ review["description"] }}</p>
+            </section>
+        
+        {% endfor %}
+        </section>
+{% endblock %}

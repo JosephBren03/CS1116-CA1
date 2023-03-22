@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+    <h2>Unhelpful Users</h2>
+
+    <table>
+        <tr>
+            <th scope="col">User ID</th>
+        </tr>
+        {% if unhelpful_users == [] %}
+            <tr>
+                <td>None</td>
+            </tr>
+        {% else %}
+            {% for user in unhelpful_users %}
+                <tr>
+                    <td>{{ user }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+
+    <h2>Delete a User</h2>
+
+    <form action="" method="post" novalidate>
+		{{ form.hidden_tag() }}
+        {{ form.user_id.label }}
+		{{ form.user_id() }}
+        {% for error in form.user_id.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+		{{ form.submit() }}
+	</form>
+
+{% endblock %}

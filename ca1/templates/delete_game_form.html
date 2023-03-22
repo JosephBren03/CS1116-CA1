@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+    <h2>Delete a Game</h2>
+
+    <table>
+        <tr>
+            <th scope="col">Game ID</th>
+            <th scope="col">Name</th>
+        </tr>
+        {% for game in games %}
+            <tr>
+                <td>{{ game["game_id"] }}</td>
+                <td>{{ game["name"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <form action="" method="post" novalidate>
+		{{ form.hidden_tag() }}
+        {{ form.game_id.label }}
+		{{ form.game_id() }}
+        {% for error in form.game_id.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+		{{ form.submit() }}
+	</form>
+
+{% endblock %}
